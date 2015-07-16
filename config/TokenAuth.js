@@ -18,7 +18,6 @@ module.exports.authenticate = function(req, res, next) {
 				return;
 			}
 
-			
 			User.findOne({ _id: decoded.iss }, function(err, user) {
 				if (user) {
 					delete user.password;
@@ -35,19 +34,19 @@ module.exports.authenticate = function(req, res, next) {
 	   	catch (err) {
 	    	return next();
 	  	}
-	} 
+	}
 	else {
 		next();
 	}
 };
 
 module.exports.generateToken = function(user) {
-	var expires = moment().add(30 , 'days').valueOf();				
+	var expires = moment().add(30 , 'days').valueOf();
 	var token = jwt.encode(
 		{
 			iss: user._id,
 			exp: expires
-		}, 
+		},
 		JWT_SECRET_TOKEN
 	);
 

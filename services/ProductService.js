@@ -77,7 +77,7 @@ var ProductServiceHelpers = {
 		var newProduct = {
 			keywords : keywordArray,
 		};
-	
+
 		if(nameEn)
 			newProduct.nameEn = nameEn;
 		if(nameTr)
@@ -285,7 +285,7 @@ var ProductService = {
 					else {
 						var updatedProduct = ProductServiceHelpers.prepareNewProduct(product);
 
-						if (updatedProduct.nameEn) 
+						if (updatedProduct.nameEn)
 							result.nameEn = updatedProduct.nameEn;
 						if (updatedProduct.nameTr)
 							result.nameTr = updatedProduct.nameTr;
@@ -309,11 +309,11 @@ var ProductService = {
 						}
 						if (price)
 							result.price    = price;
-						if (currency) 
+						if (currency)
 							result.currency = currency;
 						if(description)
 							result.description = description;
-						
+
 						result.save(callback);
 					}
 				});
@@ -455,7 +455,7 @@ var ProductService = {
 	listProductsWithPage : function(req , res) {
 		var page = req.body.page;
 
-		if (page == undefined) 
+		if (page == undefined)
 			page = 1;
 
 		Product
@@ -482,13 +482,13 @@ var ProductService = {
 			}
 			else {
 				var p = count / 25;
-				
+
 				if(count % 25 > 0) {
 					p += 1;
 				}
 
 				p = Math.floor(p);
-				
+
 				var pageCount = {
 					count : p
 				};
@@ -504,7 +504,7 @@ var ProductService = {
 		if (productId == undefined) {
 			res.send(400);
 			return;
-		}	
+		}
 
 		Product
 		.findOne({_id : productId})
@@ -580,7 +580,7 @@ var ProductService = {
 	getComments : function(req , res) {
 		var venueId   = req.body.venueId;
 		var productId = req.body.productId;
-		var maxDate   = req.body.maxDate; 
+		var maxDate   = req.body.maxDate;
 
 		if (venueId == undefined || productId == undefined) {
 			res.send(400);

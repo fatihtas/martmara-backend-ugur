@@ -5,7 +5,7 @@ var SearchController = {
 	search : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			SearchService.search(req , res);
@@ -14,7 +14,7 @@ var SearchController = {
 	searchVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			SearchService.searchVenue(req , res);
@@ -23,7 +23,7 @@ var SearchController = {
 	autoCompleteProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			SearchService.autoCompleteProduct(req , res);
@@ -32,7 +32,7 @@ var SearchController = {
 	autoCompleteVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			SearchService.autoCompleteVenue(req , res);
@@ -41,7 +41,7 @@ var SearchController = {
 	autoCompleteCategory : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			SearchService.autoCompleteCategory(req , res);
@@ -50,7 +50,7 @@ var SearchController = {
 	searchForExistingVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			SearchService.searchForExistingVenue(req , res);

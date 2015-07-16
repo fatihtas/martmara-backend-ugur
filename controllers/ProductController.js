@@ -6,7 +6,7 @@ var ProductController = {
 	createProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			ProductService.createProduct(req , res);
@@ -15,7 +15,7 @@ var ProductController = {
 	deleteProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			ProductService.deleteProduct(req , res);
@@ -24,7 +24,7 @@ var ProductController = {
 	editProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			ProductService.editProduct(req , res);
@@ -33,7 +33,7 @@ var ProductController = {
 	editVenueProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			ProductService.editVenueProduct(req , res);
@@ -42,7 +42,7 @@ var ProductController = {
 	rateProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			ProductService.rateProduct(req , res);
@@ -51,7 +51,7 @@ var ProductController = {
 	listProductsWithPage : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			ProductService.listProductsWithPage(req , res);
@@ -60,7 +60,7 @@ var ProductController = {
 	getProductPageCount : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			ProductService.getProductPageCount(req , res);
@@ -69,7 +69,7 @@ var ProductController = {
 	getProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			ProductService.getProduct(req , res);
@@ -78,7 +78,7 @@ var ProductController = {
 	getVenueProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			ProductService.getVenueProduct(req , res);
@@ -87,7 +87,7 @@ var ProductController = {
 	shoppedHere : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			ProductService.shoppedHere(req , res);
@@ -96,7 +96,7 @@ var ProductController = {
 	getComments : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			ProductService.getComments(req , res);

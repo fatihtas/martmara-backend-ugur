@@ -10,8 +10,8 @@ var FACEBOOK_CLIENT_SECRET = "5290021aaaf15d0f770b3b6541519a6b";
 var FACEBOOK_CLIENT_ID     = "1494519767479619";
 var FACEBOOK_CLIENT_SECRET = "56b4a4400047a4d4d3d6fe8b6045f733";
 
-var FacebookAuthConfig = {  
-  
+var FacebookAuthConfig = {
+
   config : function(app , passport) {
 
       passport.use(new FacebookTokenStrategy({
@@ -70,7 +70,7 @@ var FacebookAuthConfig = {
                   var newUser = new User({
                     email        : email,
                     name         : name + ' ' + surname,
-                    profileImage : profileImage 
+                    profileImage : profileImage
                   });
 
                   newUser.save(function(err) {

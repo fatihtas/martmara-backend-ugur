@@ -31,4 +31,4 @@ var paginate = require('paginate')({
     mongoose: mongoose
 });
 
-module.exports = mongoose; 
+module.exports = mongoose;

@@ -23,22 +23,22 @@ else {
 	var jwt 	 = require('jwt-simple');
 
 	var app = express();
-	
+
 	 process.on('uncaughtException', function(err) {
 	    console.log('Caught exception');
 	    console.log(err);
 	  });
-	
+
 	var ProductController   = require('./controllers/ProductController');
 	var VenueController     = require('./controllers/VenueController');
 	var UserController      = require('./controllers/UserController');
 	var SearchController    = require('./controllers/SearchController');
 	var AnalyticsController = require('./controllers/AnalyticsController');
 
-	// Auth Config Imports 
+	// Auth Config Imports
 	var FacebookAuthConfig = require('./config/FacebookAuthConfig');
 	var GoogleAuthConfig   = require('./config/GoogleAuthConfig');
- 
+
 	// all environments
 	app.set('port', process.env.PORT || 3000);
 	app.set('views', path.join(__dirname, 'views'));
@@ -75,7 +75,7 @@ else {
 	app.post('/product/getVenueProduct'  		    , TokenAuth.authenticate , ProductController.getVenueProduct);
 	app.post('/product/shoppedHere'  		   		, TokenAuth.authenticate , ProductController.shoppedHere);
 	app.post('/product/getComments'  		   		, TokenAuth.authenticate , ProductController.getComments);
-			
+
 	app.post('/venue/createCategory' 				, TokenAuth.authenticate , VenueController.createCategory);
 	app.post('/venue/createVenue'    				, TokenAuth.authenticate , VenueController.createVenue);
 	app.post('/venue/createSupplyChain'    			, TokenAuth.authenticate , VenueController.createSupplyChain);
@@ -153,7 +153,7 @@ else {
 	var MessageService = require('./services/MessageService');
 	app.post('/messages/sendVerificationCode' , TokenAuth.authenticate , MessageService.sendVerificationCode);
 	app.post('/messages/verifyCode'           , TokenAuth.authenticate , MessageService.verifyCode);
-		
+
 	/*
 	app.get('/venueOwnerFix' , function(req , res) {
 		var Venue = require('./models/Venue');
@@ -522,4 +522,4 @@ else {
 	});
 	*/
 
-} 
+}

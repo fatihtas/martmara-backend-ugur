@@ -11,8 +11,8 @@ var GOOGLE_CLIENT_ID     = "952167144833-9vf9gvuo7j9v69bonosmd9lo9i034p22.apps.g
 var GOOGLE_CLIENT_SECRET = "N255okeT04i-_4p4ivoI8RmL";
 
 
-var GoogleAuthConfig = {  
-  
+var GoogleAuthConfig = {
+
   config : function(app , passport) {
 
       passport.use(new GoogleTokenStrategy({

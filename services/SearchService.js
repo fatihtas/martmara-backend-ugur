@@ -103,7 +103,7 @@ var SearchServiceHelpers = {
 							}
 						}
 					});
-			} 
+			}
 			// Rating filter
 			else if (filterType == FILTER_TYPE_RATING) {
 
@@ -127,7 +127,7 @@ var SearchServiceHelpers = {
 		prefix = Util.convertAccentedCharacters(prefix);
 
 		async.parallel({
-			
+
 			// Find products that has the prefix on its first word(keyword)
 			firstKeywordResults : function(callback) {
 				Product
@@ -204,7 +204,7 @@ var SearchServiceHelpers = {
 
 			// Combine the results while keeping the firstKeyword results on top of the list
 			for (var i = 0; i < otherKeywordResults.length; i++) {
-				
+
 				// Traverse firstKeywordResults to see if the current item is already in the list
 				var alreadyInTheList = false;
 				for (var j = 0; j < firstKeywordResults.length; j++) {
@@ -227,7 +227,7 @@ var SearchServiceHelpers = {
 		prefix = Util.convertAccentedCharacters(prefix);
 
 		async.parallel({
-			
+
 			// Find products that has the prefix on its first word(keyword)
 			firstKeywordResults : function(callback) {
 				Venue
@@ -261,7 +261,7 @@ var SearchServiceHelpers = {
 
 			// Combine the results while keeping the firstKeyword results on top of the list
 			for (var i = 0; i < otherKeywordResults.length; i++) {
-				
+
 				// Traverse firstKeywordResults to see if the current item is already in the list
 				var alreadyInTheList = false;
 				for (var j = 0; j < firstKeywordResults.length; j++) {
@@ -284,7 +284,7 @@ var SearchServiceHelpers = {
 		prefix = Util.convertAccentedCharacters(prefix);
 
 		async.parallel({
-			
+
 			// Find products that has the prefix on its first word(keyword)
 			firstKeywordResults : function(callback) {
 				Category
@@ -332,7 +332,7 @@ var SearchServiceHelpers = {
 
 			// Combine the results while keeping the firstKeyword results on top of the list
 			for (var i = 0; i < otherKeywordResults.length; i++) {
-				
+
 				// Traverse firstKeywordResults to see if the current item is already in the list
 				var alreadyInTheList = false;
 				for (var j = 0; j < firstKeywordResults.length; j++) {
@@ -424,7 +424,6 @@ var SearchService = {
 			query = query.sort('-rating');
 		}
 
-		
 		async.parallel({
 
 			venueSearchedProducts : function(callback) {
@@ -599,7 +598,7 @@ var SearchService = {
 			res.send(400);
 			return;
 		}
-		
+
 		SearchServiceHelpers.autoCompleteVenue(prefix , function(err , results) {
 			if (err) {
 				console.log(err);
@@ -618,7 +617,7 @@ var SearchService = {
 			res.send(400);
 			return;
 		}
-		
+
 		SearchServiceHelpers.autoCompleteCategory(prefix , function(err , results) {
 			if (err) {
 				console.log(err);

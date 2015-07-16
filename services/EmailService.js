@@ -22,7 +22,7 @@ function sendEmail (toAddress, subject, content){
   	};
 
   	transporter.sendMail(mailOptions);
-} 
+}
 
 function parseTemplate (templateName , context , callback) {
 	var template =  process.cwd() + '/email-templates/' + templateName;

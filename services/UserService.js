@@ -55,7 +55,7 @@ var UserService = {
 		if (email == undefined) {
 			res.send(400);
 			return;
-		}	
+		}
 
 		User
 		.findOne({email : email})
@@ -120,7 +120,7 @@ var UserService = {
 
 					var currentDate = new Date();
 					var numberOfDaysToAdd = 2;
-					currentDate.setDate(currentDate.getDate() + numberOfDaysToAdd); 
+					currentDate.setDate(currentDate.getDate() + numberOfDaysToAdd);
 
 					user.resetToken  = token;
 					user.resetExpiry = currentDate;
@@ -128,11 +128,9 @@ var UserService = {
 
 					res.send(200);
 				});
-
-				
 			}
 		});
-	},	
+	},
 
 	resetPassword : function(req , res) {
 		var token        = req.body.token;
@@ -167,10 +165,10 @@ var UserService = {
 	},
 
 	login : function(req , res) {
-		if (req.headers.email && req.headers.password) {		
-		  
+		if (req.headers.email && req.headers.password) {
+
 		    User.findOne({ email: req.headers.email }, function(err, user) {
-				if (err) {		
+				if (err) {
 					res.send('Authentication error', 401);
 					return;
 				}
@@ -181,34 +179,34 @@ var UserService = {
 				}
 
 		        user.comparePassword(req.headers.password, function(err, isMatch) {
-		      		if (err) {	      		
+		      		if (err) {
 		      			res.send('Authentication error', 401);
 		      			return;
 		      		}
 
-					if (isMatch) {	
+					if (isMatch) {
 						var token = TokenAuth.generateToken(user);
 						res.json({
 							token   : token,
 							user    : user.toJSON()
 						});
-					} 
-					else {						
+					}
+					else {
 						res.send('Authentication error', 401);
 					}
 				});
 			});
-		} 
+		}
 		else {
 			res.send('Authentication error', 401);
 		}
 	},
 
 	adminLogin : function(req , res) {
-		if (req.headers.email && req.headers.password) {		
-		  
+		if (req.headers.email && req.headers.password) {
+
 		    User.findOne({ email: req.headers.email }, function(err, user) {
-				if (err) {		
+				if (err) {
 					res.send('Authentication error', 401);
 					return;
 				}
@@ -219,7 +217,7 @@ var UserService = {
 				}
 
 		        user.comparePassword(req.headers.password, function(err, isMatch) {
-		      		if (err) {	      		
+		      		if (err) {
 		      			res.send('Authentication error', 401);
 		      			return;
 		      		}
@@ -230,13 +228,13 @@ var UserService = {
 							token   : token,
 							user    : user.toJSON()
 						});
-					} 
-					else {						
+					}
+					else {
 						res.send('Authentication error', 401);
 					}
 				});
 			});
-		} 
+		}
 		else {
 			res.send('Authentication error', 401);
 		}
@@ -314,7 +312,7 @@ var UserService = {
 		var query = User
 					.find()
 					.where('userType').in([User.USER_TYPE_ADMIN , User.USER_TYPE_SUPER_ADMIN])
-					.sort('_id')	
+					.sort('_id')
 					.select('-password')
 					.limit(25);
 
@@ -557,7 +555,7 @@ var UserService = {
 		});
 	},
 
-	getUsersWithPage : function(req , res) {	
+	getUsersWithPage : function(req , res) {
 		var page = req.body.page;
 
 		if (page == undefined) {
@@ -588,13 +586,13 @@ var UserService = {
 			}
 			else {
 				var p = count / 25;
-				
+
 				if(count % 25 > 0) {
 					p += 1;
 				}
 
 				p = Math.floor(p);
-				
+
 				var pageCount = {
 					count : p
 				};

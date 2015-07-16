@@ -7,7 +7,7 @@ var VenueProduct     = require('../models/VenueProduct');
 var Category    	 = require('../models/Category');
 var CategoryProduct  = require('../models/CategoryProduct');
 var SupplyChain 	 = require('../models/SupplyChain');
-var Util        	 = require('../util/Util'); 
+var Util        	 = require('../util/Util');
 
 var ProductService = require('./ProductService');
 
@@ -18,8 +18,8 @@ var geocoderProvider = 'google';
 var httpAdapter      = 'https';
 
 var extra = {
-    apiKey   : 'AIzaSyB6DNnuvqms1WM3XNKjS6YRwZ4C176uEZw', 
-    formatter: null        
+    apiKey   : 'AIzaSyB6DNnuvqms1WM3XNKjS6YRwZ4C176uEZw',
+    formatter: null
 };
 
 var geocoder = require('node-geocoder').getGeocoder(geocoderProvider, httpAdapter, extra);
@@ -42,14 +42,14 @@ var VenueServiceHelpers = {
 			var convertedName   = Util.convertAccentedCharacters(nameEnLowerCase);  // convert all turkish vs characters into english form (ex : ç -> c)
 			var keywords        = convertedName.trim().split(/\s+/);                // trim and split by whitespace
 
-			
+
 			for (var i = 0; i < keywords.length; i++) {
 				var newKeyword = {
 					order    : i,
 					keyword  : keywords[i],
 					language : 'en'
 				};
-				keywordArray.push(newKeyword);	
+				keywordArray.push(newKeyword);
 			}
 
 			keywordArray.push({
@@ -70,7 +70,7 @@ var VenueServiceHelpers = {
 					keyword  : keywords[i],
 					language : 'tr'
 				};
-				keywordArray.push(newKeyword);	
+				keywordArray.push(newKeyword);
 			}
 
 			keywordArray.push({
@@ -79,11 +79,11 @@ var VenueServiceHelpers = {
 				language : 'tr'
 			});
 		}
-		
+
 		var newCategory = {
 			keywords : keywordArray,
 		};
-	
+
 		if(nameEn)
 			newCategory.nameEn = nameEn;
 		if(nameTr)
@@ -126,14 +126,14 @@ var VenueServiceHelpers = {
 			var convertedName   = Util.convertAccentedCharacters(nameEnLowerCase);  // convert all turkish vs characters into english form (ex : ç -> c)
 			var keywords        = convertedName.trim().split(/\s+/);                // trim and split by whitespace
 
-			
+
 			for (var i = 0; i < keywords.length; i++) {
 				var newKeyword = {
 					order    : i,
 					keyword  : keywords[i],
 					language : 'en'
 				};
-				keywordArray.push(newKeyword);	
+				keywordArray.push(newKeyword);
 			}
 
 			keywordArray.push({
@@ -153,7 +153,7 @@ var VenueServiceHelpers = {
 					keyword  : keywords[i],
 					language : 'tr'
 				};
-				keywordArray.push(newKeyword);	
+				keywordArray.push(newKeyword);
 			}
 
 			keywordArray.push({
@@ -161,7 +161,7 @@ var VenueServiceHelpers = {
 				keyword : convertedName
 			});
 		}
-		
+
 		var newSupplyChain = new SupplyChain({
 			nameEn 	 : nameEn,
 			nameTr   : nameTr,
@@ -219,7 +219,7 @@ var VenueServiceHelpers = {
 					venue.save(function(err) {
 						if (err) {
 							console.log(err);
-						} 
+						}
 					});
 				}
 			}
@@ -237,7 +237,7 @@ var VenueServiceHelpers = {
 		        // Find the following date and set closingExtra
 
 		        var nextDay;
-		        if (day == 7) 
+		        if (day == 7)
 		        	nextDay = 1;
 		        else
 		        	nextDay = day + 1;
@@ -327,7 +327,7 @@ var VenueServiceHelpers = {
 		var newProduct = {
 			keywords : keywordArray,
 		};
-	
+
 		if(nameEn)
 			newProduct.nameEn = nameEn;
 		if(nameTr)
@@ -339,7 +339,7 @@ var VenueServiceHelpers = {
 
 		return newProduct;
 	},
-	
+
 	createVenueProducts : function(productsArray , venue) {
 		for (var i = 0; i < productsArray.length; i++) {
 			var product  = productsArray[i].product;
@@ -400,7 +400,7 @@ var VenueServiceHelpers = {
 	},
 
 	createProductsForNewVenue : function(products , venue) {
-		if (!products || products.length == 0) 
+		if (!products || products.length == 0)
 			return;
 
 		var productsArray     = [];  // this is the array that we will later use to create VenueProduct objects
@@ -470,15 +470,15 @@ var VenueServiceHelpers = {
 					for(var i = 0 ; i < keys.length ; i++) {
 						var productToCreate = {};
 
-						if (productsWithoutId[keys[i]].nameEn) 
+						if (productsWithoutId[keys[i]].nameEn)
 							productToCreate.nameEn = productsWithoutId[keys[i]].nameEn;
 
-						if (productsWithoutId[keys[i]].nameTr) 
+						if (productsWithoutId[keys[i]].nameTr)
 							productToCreate.nameTr = productsWithoutId[keys[i]].nameTr;
 
-						if (productsWithoutId[keys[i]].keywords) 
+						if (productsWithoutId[keys[i]].keywords)
 							productToCreate.keywords = productsWithoutId[keys[i]].keywords;
-						
+
 						productsToCreate.push(productToCreate);
 					}
 
@@ -525,7 +525,7 @@ var VenueServiceHelpers = {
 		for (var i = 0; i < categories.length; i++) {
 			var categoryId = categories[i]._id;
 
-			if (categoryId) 
+			if (categoryId)
 				categoryIdArray.push(categoryId);
 			else
 				categoriesWithName.push(categories[i]);
@@ -569,7 +569,7 @@ var VenueServiceHelpers = {
 					}
 					else {
 						query = query.or(orArray);
-					}	
+					}
 
 					query
 					.exec(function(err , result) {
@@ -740,7 +740,7 @@ var VenueService = {
 		var ownerInfo         = req.body.ownerInfo;
 		var media			  = req.body.media;
 		var code              = req.body.code;
-		
+
 		var user = req.user;
 
 		if (name == undefined || latitude == undefined || longitude == undefined || categories == undefined) {
@@ -768,7 +768,7 @@ var VenueService = {
 				order   : i,
 				keyword : keywords[i]
 			};
-			keywordArray.push(newKeyword);	
+			keywordArray.push(newKeyword);
 		}
 
 		keywordArray.push({
@@ -791,7 +791,7 @@ var VenueService = {
 			keywords    	  : keywordArray,
 			media 			  : media,
 			operatingHours    : VenueServiceHelpers.adjustOperatingHours(operatingHours),
-			creator 		  : user._id	
+			creator 		  : user._id
 		});
 
 		if (user.userType == User.USER_TYPE_NORMAL) {
@@ -824,13 +824,13 @@ var VenueService = {
 					if (adressData.streetNumber)
 						address += adressData.streetNumber + ' ';
 
-					if (adressData.zipcode) 
+					if (adressData.zipcode)
 						address += adressData.zipcode + ' ';
 
-					if (adressData.city) 
+					if (adressData.city)
 						address += adressData.city + ' ';
 
-					if (adressData.country) 
+					if (adressData.country)
 						address += adressData.country;
 
 					console.log(address);
@@ -1062,7 +1062,7 @@ var VenueService = {
 					if (err) {
 						console.log(err);
 						res.send(400);
-					}	
+					}
 					else {
 						res.send(200);
 					}
@@ -1077,7 +1077,7 @@ var VenueService = {
 		if (categoryId == undefined) {
 			res.send(400);
 			return;
-		}	
+		}
 
 		CategoryProduct
 		.findOne({category : categoryId})
@@ -1099,7 +1099,7 @@ var VenueService = {
 	listCategoryProductsWithPage : function(req , res) {
 		var page = req.body.page;
 
-		if (page == undefined) 
+		if (page == undefined)
 			page = 1;
 
 		CategoryProduct
@@ -1127,13 +1127,13 @@ var VenueService = {
 			}
 			else {
 				var p = count / 25;
-				
+
 				if(count % 25 > 0) {
 					p += 1;
 				}
 
 				p = Math.floor(p);
-				
+
 				var pageCount = {
 					count : p
 				};
@@ -1285,13 +1285,13 @@ var VenueService = {
 			}
 			else {
 				var p = count / 25;
-				
+
 				if(count % 25 > 0) {
 					p += 1;
 				}
 
 				p = Math.floor(p);
-				
+
 				var pageCount = {
 					count : p
 				};
@@ -1336,7 +1336,7 @@ var VenueService = {
 						res.send(category);
 					}
 				});
-				
+
 			}
 		});
 	},
@@ -1370,7 +1370,7 @@ var VenueService = {
 						order   : i,
 						keyword : keywords[i]
 					};
-					keywordArray.push(newKeyword);	
+					keywordArray.push(newKeyword);
 				}
 
 				keywordArray.push({
@@ -1389,15 +1389,14 @@ var VenueService = {
 				existingVenue.ownerInfo         = venue.ownerInfo;
 
 				try {
-					existingVenue.ownerInfo.owner = venue.ownerInfo.owner._id;	
+					existingVenue.ownerInfo.owner = venue.ownerInfo.owner._id;
 				}
 				catch(exception) {
 					console.log(exception);
 				}
-				
 
 				var categories = venue.categories;
-				
+
 				VenueServiceHelpers.createCategories(categories , function(err , createdCategories) {
 					if (err) {
 						console.log(err);
@@ -1450,13 +1449,13 @@ var VenueService = {
 					if (adressData.streetNumber)
 						address += adressData.streetNumber + ' ';
 
-					if (adressData.zipcode) 
+					if (adressData.zipcode)
 						address += adressData.zipcode + ' ';
 
-					if (adressData.city) 
+					if (adressData.city)
 						address += adressData.city + ' ';
 
-					if (adressData.country) 
+					if (adressData.country)
 						address += adressData.country;
 
 					console.log(address);
@@ -1489,7 +1488,7 @@ var VenueService = {
 								}
 							});
 						}
-					}); 
+					});
 				});
 			}
 		});
@@ -1527,7 +1526,7 @@ var VenueService = {
 							callback(err);
 						}
 						else {
-							VenueServiceHelpers.createProductsForNewVenue(productsToAdd , result);		
+							VenueServiceHelpers.createProductsForNewVenue(productsToAdd , result);
 							callback(null);
 						}
 					});
@@ -1541,7 +1540,7 @@ var VenueService = {
 				res.send(400);
 			else
 				res.send(200);
-		});		
+		});
 	},
 
 	updateVenueMedia : function(req , res) {
@@ -1564,7 +1563,7 @@ var VenueService = {
 			else {
 				result.media = media;
 				result.save(function(err) {
-					if (err) 
+					if (err)
 						res.send(400);
 					else
 						res.send(200);
@@ -1703,7 +1702,7 @@ var VenueService = {
 					//.populate('claimRequests.owner' , '-password')
 					.populate('creator' , '-password');
 
-		if (sortType == undefined) 
+		if (sortType == undefined)
 			sortType = 0;
 
 		if (sortType == 0) {
@@ -1716,7 +1715,7 @@ var VenueService = {
 			query = query.sort('creationDate');
 		}
 		else if(sortType == 3) {
-			query = query.sort('-creationDate');	
+			query = query.sort('-creationDate');
 		}
 
 		if (status)
@@ -1749,8 +1748,8 @@ var VenueService = {
 		var ownerStatus = req.body.status;
 
 		var query = Venue.count();
-		
-		if (status) 
+
+		if (status)
 			query = query.where('status').equals(status);
 		else
 			query = query.where('status').equals(Venue.STATUS_APPROVED);
@@ -1765,13 +1764,13 @@ var VenueService = {
 			}
 			else {
 				var p = count / 25;
-				
+
 				if(count % 25 > 0) {
 					p += 1;
 				}
 
 				p = Math.floor(p);
-				
+
 				var pageCount = {
 					count : p
 				};
@@ -1866,12 +1865,11 @@ var VenueService = {
 							totalProductRating += venueProducts[i].rating;
 							votedProductCount++;
 						}
-						
 					}
-					
+
 					if (isNewRating) {
 						var ratingCount = venue.ratingCount;
-						if (ratingCount == undefined) 
+						if (ratingCount == undefined)
 							ratingCount = 1;
 						else
 							ratingCount += 1;
@@ -1881,7 +1879,7 @@ var VenueService = {
 
 					var newVenueRating = totalProductRating / votedProductCount;
 					venue.rating = newVenueRating;
-					
+
 					venue.save(function(err) {
 						if (err)
 							console.log(err);
@@ -1996,7 +1994,6 @@ var VenueService = {
 			else if(!venue) {
 				console.log("Change Venue Owner Status No Venue!");
 
-
 				res.send(400);
 			}
 			else {
@@ -2010,10 +2007,10 @@ var VenueService = {
 					}
 				}
 
-				if (index != -1) 
+				if (index != -1)
 					claimRequests.splice(index , 1);
 
-				if (claimRequests.length == 0) 
+				if (claimRequests.length == 0)
 					venue.ownerStatus = Venue.OWNER_STATUS_NO_REQUEST;
 
 				venue.claimRequests = claimRequests;

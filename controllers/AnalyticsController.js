@@ -6,7 +6,7 @@ var AnalyticsController = {
 	createAnalyticsEntry : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			AnalyticsService.createAnalyticsEntry(req , res);
@@ -15,7 +15,7 @@ var AnalyticsController = {
 	getAnalytics : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL) 
+		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL)
 			res.send(401);
 		else
 			AnalyticsService.getAnalytics(req , res);
@@ -24,7 +24,7 @@ var AnalyticsController = {
 	getTopAnalytics : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL) 
+		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL)
 			res.send(401);
 		else
 			AnalyticsService.getTopAnalytics(req , res);
@@ -33,7 +33,7 @@ var AnalyticsController = {
 	getSearchAnalyticsPageCount : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL) 
+		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL)
 			res.send(401);
 		else
 			AnalyticsService.getSearchAnalyticsPageCount(req , res);
@@ -42,7 +42,7 @@ var AnalyticsController = {
 	getSearchAnalytics : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL) 
+		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL)
 			res.send(401);
 		else
 			AnalyticsService.getSearchAnalytics(req , res);
@@ -51,7 +51,7 @@ var AnalyticsController = {
 	getAllAnalytics : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL) 
+		if (user == undefined || user == null || user.userType == User.USER_TYPE_NORMAL)
 			res.send(401);
 		else
 			AnalyticsService.getAllAnalytics(req , res);

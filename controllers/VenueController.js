@@ -6,7 +6,7 @@ var VenueController = {
 	createCategory : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.createCategory(req , res);
@@ -15,7 +15,7 @@ var VenueController = {
 	createSupplyChain : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.createSupplyChain(req , res);
@@ -24,7 +24,7 @@ var VenueController = {
 	createVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.createVenue(req , res);
@@ -33,7 +33,7 @@ var VenueController = {
 	createCategoryProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.createCategoryProduct(req , res);
@@ -42,16 +42,16 @@ var VenueController = {
 	updateCategoryProduct : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.updateCategoryProduct(req , res);
 	},
-	
+
 	getCategoryProducts : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.getCategoryProducts(req , res);
@@ -60,7 +60,7 @@ var VenueController = {
 	listCategoryProductsWithPage : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.listCategoryProductsWithPage(req , res);
@@ -69,7 +69,7 @@ var VenueController = {
 	getCategoryProductPageCount : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.getCategoryProductPageCount(req , res);
@@ -78,7 +78,7 @@ var VenueController = {
 	deleteVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.deleteVenue(req , res);
@@ -87,7 +87,7 @@ var VenueController = {
 	editCategory : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.editCategory(req , res);
@@ -96,7 +96,7 @@ var VenueController = {
 	listCategoriesWithPage : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.listCategoriesWithPage(req , res);
@@ -105,7 +105,7 @@ var VenueController = {
 	getCategoryPageCount : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.getCategoryPageCount(req , res);
@@ -114,7 +114,7 @@ var VenueController = {
 	getCategory : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.getCategory(req , res);
@@ -123,7 +123,7 @@ var VenueController = {
 	updateVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.updateVenue(req , res);
@@ -132,7 +132,7 @@ var VenueController = {
 	updateVenueLocation : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.updateVenueLocation(req , res);
@@ -141,7 +141,7 @@ var VenueController = {
 	updateVenueProducts : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.updateVenueProducts(req , res);
@@ -150,7 +150,7 @@ var VenueController = {
 	updateVenueMedia : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.updateVenueMedia(req , res);
@@ -159,7 +159,7 @@ var VenueController = {
 	changeVenueStatus : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.changeVenueStatus(req , res);
@@ -168,7 +168,7 @@ var VenueController = {
 	getNearVenues : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.getNearVenues(req , res);
@@ -177,7 +177,7 @@ var VenueController = {
 	listVenues : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.listVenues(req , res);
@@ -186,7 +186,7 @@ var VenueController = {
 	listVenuesWithPage : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.listVenuesWithPage(req , res);
@@ -195,20 +195,20 @@ var VenueController = {
 	getVenuePageCount : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.getVenuePageCount(req , res);
 	},
 
-	getVenueDetails : function(req , res) {	
+	getVenueDetails : function(req , res) {
 		VenueService.getVenueDetails(req , res);
 	},
 
 	getSupplyChainList : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.getSupplyChainList(req , res);
@@ -221,7 +221,7 @@ var VenueController = {
 	claimVenue : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null) 
+		if (user == undefined || user == null)
 			res.send(401);
 		else
 			VenueService.claimVenue(req , res);
@@ -230,7 +230,7 @@ var VenueController = {
 	approveVenueOwner : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.approveVenueOwner(req , res);
@@ -239,7 +239,7 @@ var VenueController = {
 	declineVenueOwner : function(req , res) {
 		var user = req.user;
 
-		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN)) 
+		if (user == undefined || user == null || (user.userType != User.USER_TYPE_SUPER_ADMIN && user.userType != User.USER_TYPE_ADMIN))
 			res.send(401);
 		else
 			VenueService.declineVenueOwner(req , res);

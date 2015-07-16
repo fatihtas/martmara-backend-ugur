@@ -38,7 +38,7 @@ var AnalyticsService = {
 			if (err) {
 				console.log(err);
 				res.send(400);
-			}	
+			}
 			else {
 				res.send(200);
 			}
@@ -53,15 +53,15 @@ var AnalyticsService = {
 
 		if (venueId == undefined || type == undefined) {
 			res.send(400);
-			return;	
+			return;
 		}
 
 		var query = Analytics.count({venue : venueId , type : type});
 
-		if (minDate) 
+		if (minDate)
 			query = query.where('date').gte(minDate);
 
-		if (maxDate) 
+		if (maxDate)
 			query = query.where('date').lte(maxDate);
 
 		query.exec(function(err , count) {
@@ -96,13 +96,13 @@ var AnalyticsService = {
 				console.log(err);
 				res.send(400);
 			}
-			else {	
+			else {
 				Venue.populate(results , {path : "_id"} , function(err , venues) {
 
 					var responseArray = [];
 
 					for (var i = 0; i < venues.length; i++) {
-						responseArray.push({ 
+						responseArray.push({
 							venue : venues[i]._id ,
 							count : venues[i].count
 						});
@@ -121,15 +121,15 @@ var AnalyticsService = {
 
 		if (venueId == undefined) {
 			res.send(400);
-			return;	
+			return;
 		}
 
 		var query = Analytics.count({venue : venueId , type : Analytics.HISTORY_TYPE_VENUE_DISPLAYED_AFTER_SEARCH});
 
-		if (minDate) 
+		if (minDate)
 			query = query.where('date').gte(minDate);
 
-		if (maxDate) 
+		if (maxDate)
 			query = query.where('date').lte(maxDate);
 
 		query.exec(function(err , count) {
@@ -139,13 +139,13 @@ var AnalyticsService = {
 			}
 			else {
 				var p = count / 25;
-				
+
 				if(count % 25 > 0) {
 					p += 1;
 				}
 
 				p = Math.floor(p);
-				
+
 				var pageCount = {
 					count : p
 				};
@@ -163,18 +163,18 @@ var AnalyticsService = {
 
 		if (venueId == undefined) {
 			res.send(400);
-			return;	
+			return;
 		}
 
 		var query = Analytics.find({venue : venueId , type : Analytics.HISTORY_TYPE_VENUE_DISPLAYED_AFTER_SEARCH});
 
-		if (minDate) 
+		if (minDate)
 			query = query.where('date').gte(minDate);
 
-		if (maxDate) 
+		if (maxDate)
 			query = query.where('date').lte(maxDate);
 
-		if (!page) 
+		if (!page)
 			page = 1;
 
 		query.paginate({page : page , perPage : 25} , function(err , results) {
@@ -195,15 +195,15 @@ var AnalyticsService = {
 
 		if (venueId == undefined) {
 			res.send(400);
-			return;	
+			return;
 		}
 
 		var query = Analytics.find({venue : venueId , type : Analytics.HISTORY_TYPE_VENUE_DISPLAYED_AFTER_SEARCH});
 
-		if (minDate) 
+		if (minDate)
 			query = query.where('date').gte(minDate);
 
-		if (maxDate) 
+		if (maxDate)
 			query = query.where('date').lte(maxDate);
 
 		query.exec(function(err , results) {
@@ -215,8 +215,8 @@ var AnalyticsService = {
 				res.send(results);
 			}
 		});
-	} 
+	}
 
 };
 
-module.exports = AnalyticsService;2
+module.exports = AnalyticsService;
