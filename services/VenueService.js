@@ -1161,14 +1161,6 @@ var VenueService = {
 			}
 		});
 
-		Analytics
-		.remove({venue : venueId})
-		.exec(function(err) {
-			if (err) {
-				console.log(err);
-			}
-		});
-
 		User
 		.find()
 		.where('bookmarks').in([venueId])
