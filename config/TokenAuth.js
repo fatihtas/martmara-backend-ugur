@@ -2,8 +2,9 @@ var User = require('../models/User');
 
 var jwt    = require('jwt-simple');
 var moment = require('moment');
+var appkeys = require('./appkeys');
 
-var JWT_SECRET_TOKEN = '4353453?)ASDASD35JDJDJ111'
+var JWT_SECRET_TOKEN = appkeys.JWT_SECRET_TOKEN;
 
 module.exports.authenticate = function(req, res, next) {
 	var token = (req.body && req.body.access_token) || (req.query && req.query.access_token) || req.headers['x-access-token'];

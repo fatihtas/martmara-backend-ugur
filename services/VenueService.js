@@ -175,57 +175,7 @@ var VenueServiceHelpers = {
 				callback(null , newSupplyChain);
 		});
 	},
-/*
-	fix : function() {
-		Venue
-		.find()
-		.select('operatingHours')
-		.exec(function(err , results) {
-			if (err) {
-				console.log(err);
-			}
-			else {
-				for (var i = 0; i < results.length; i++) {
-					var venue          = results[i];
-					var operatingHours = venue.operatingHours;
 
-					var newOperatingHoursArray = [];
-
-					for (var j = 0; j < operatingHours.length; j++) {
-						var op = operatingHours[j];
-
-						if (op.openingHourString != undefined) {
-							var openingHourSplit = op.openingHourString.split(':');
-							var closingHourSplit = op.closingHourString.split(':');
-
-							var openingHourInt   = parseInt(openingHourSplit[0]);
-							var openingMinuteInt = parseInt(openingHourSplit[1]);
-
-							var closingHourInt   = parseInt(closingHourSplit[0]);
-							var closingMinuteInt = parseInt(closingHourSplit[1]);
-
-							newOperatingHoursArray.push({
-								dayOfTheWeek 	  : op.dayOfTheWeek,
-								openingHourString : op.openingHourString,
-								closingHourString : op.closingHourString,
-								openingHour  	  : openingHourInt * 60 + openingMinuteInt,
-								closingHour       : closingHourInt * 60 + closingMinuteInt
-							});
-						}
-					}
-
-					var adjustedOps = VenueServiceHelpers.adjustOperatingHours(newOperatingHoursArray);
-					venue.operatingHours = adjustedOps;
-					venue.save(function(err) {
-						if (err) {
-							console.log(err);
-						}
-					});
-				}
-			}
-		});
-	},
-*/
 	adjustOperatingHours : function(operatingHours) {
 		var opsToAdd = [];
 		for (var i = 0; i < operatingHours.length; i++) {
@@ -640,11 +590,6 @@ var VenueServiceHelpers = {
 
 
 var VenueService = {
-/*
-	fix : function() {
-		VenueServiceHelpers.fix();
-	},
-*/
 	createCategory : function(req , res) {
 		var nameEn = req.body.nameEn;
 		var nameTr = req.body.nameTr;
@@ -846,7 +791,7 @@ var VenueService = {
 							temp.code = code;
 							res.send(temp);
 
-							//res.send(newVenue);
+							
 							VenueServiceHelpers.createProductsForNewVenue(products , newVenue);
 							VenueServiceHelpers.addCategoryProductsToVenueProducts(newVenue);
 						}
@@ -872,146 +817,6 @@ var VenueService = {
 			}
 		});
 	},
-
-	/*
-	createCategoryProduct : function(req , res) {
-		var categoryNameEn = req.body.categoryNameEn;
-		var categoryNameTr = req.body.categoryNameTr;
-		var products       = req.body.products;
-
-		if ((categoryNameEn == undefined && categoryNameTr == undefined) || products == undefined) {
-			res.send(400);
-			return;
-		}
-
-		// Create or update categoryProduct
-		function createOrUpdateCategoryProduct(category , products) {
-			CategoryProduct
-			.findOne()
-			.where('category').equals(category._id)
-			.exec(function(err , result) {
-				if (err) {
-					console.log(err);
-					res.send(400);
-				}
-				else {
-					// Save new CategoryProduct
-					if (result == undefined) {
-						var newCategoryProduct = new CategoryProduct({
-							category : category,
-							products : products
-						});
-
-						newCategoryProduct.save(function(err) {
-							if (err) {
-								console.log(err);
-								res.send(400);
-							}
-							else {
-								res.send(200);
-							}
-						});
-					}
-					// Update existing CategoryProduct
-					else {
-						result.products = products;
-						result.save(function(err) {
-							if (err) {
-								console.log(err);
-								res.send(400);
-							}
-							else {
-								res.send(200);		
-							}
-						});
-					}
-				}
-			});
-		}
-
-		// Find or create the products
-		function findOrCreateProducts(category , products) {
-			var parallelArray = [];
-
-			for (var i = 0; i < products.length; i++) {
-
-				
-				function createFunction(product) {
-					return function(callback) {
-						var nameEn = product.nameEn;
-						var nameTr = product.nameTr;
-
-						// Search for an existing product with the same name, create a new one if it doesnt exists
-						Product
-						.findOne()
-						.where('nameEn').equals(nameEn)
-						.where('nameTr').equals(nameTr)
-						.exec(function(err , existingProduct) {
-							if (err) {
-								callback(err);
-							}
-							else {
-								if (existingProduct != undefined) {
-									callback(null , existingProduct);
-								}
-								else {
-									var newProduct = new Product(VenueServiceHelpers.prepareNewProduct(product));
-									newProduct.save(function(err) {
-										if (err) {
-											callback(err);
-										}
-										else {
-											callback(null , newProduct);
-										}
-									});
-								}
-							}
-						});
-					};
-				}
-
-				parallelArray.push(createFunction(products[i]));
-			}
-
-			async.parallel(parallelArray , function(err , results) {
-				if (err) {
-					console.log(err);
-					res.send(400);
-				}
-				else {
-					createOrUpdateCategoryProduct(category , results);
-				}
-			});
-		}
-
-		// Find or create given category
-		Category
-		.findOne()
-		.where('nameEn').equals(categoryNameEn)
-		.where('nameTr').equals(categoryNameTr)
-		.exec(function(err , category) {
-			if (err) {
-				console.log(err);
-				res.send(400);
-			}
-			else {
-				if (category != undefined) {
-					findOrCreateProducts(category , products);
-				}
-				else {
-					VenueServiceHelpers.createCategory({
-						nameEn : categoryNameEn,
-						nameTr : categoryNameTr
-					} , 
-					function(err , result) {
-						findOrCreateProducts(result , products);
-					});
-				}
-			}	
-		});
-	},
-	*/
-
 	createCategoryProduct : function(req , res) {
 		var categoryId = req.body.categoryId;
 		var products   = req.body.products;
@@ -1698,8 +1503,6 @@ var VenueService = {
 					.find()
 					.limit(25)
 					.populate('categories')
-					//.populate('ownerInfo.owner' , '-password')
-					//.populate('claimRequests.owner' , '-password')
 					.populate('creator' , '-password');
 
 		if (sortType == undefined)

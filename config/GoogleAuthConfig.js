@@ -1,14 +1,16 @@
 var GoogleTokenStrategy = require('passport-google-token').Strategy;
 var TokenAuth           = require('./TokenAuth');
 var User                = require('../models/User');
+var appkeys 		  = require('./appkeys');
 
 /*
+old
 var GOOGLE_CLIENT_ID     = "323883066036-jc1jnr0jgd3nnn9np8efa6svn3mbnrom.apps.googleusercontent.com";
 var GOOGLE_CLIENT_SECRET = "WnOJPmemU1YzMRs7KjmcWGrO";
 */
 
-var GOOGLE_CLIENT_ID     = "952167144833-9vf9gvuo7j9v69bonosmd9lo9i034p22.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "N255okeT04i-_4p4ivoI8RmL";
+var GOOGLE_CLIENT_ID = appkeys.GOOGLE_CLIENT_ID;
+var GOOGLE_CLIENT_SECRET = appkeys.GOOGLE_CLIENT_SECRET;
 
 
 var GoogleAuthConfig = {

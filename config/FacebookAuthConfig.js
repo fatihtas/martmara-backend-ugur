@@ -1,14 +1,23 @@
 var FacebookTokenStrategy = require('passport-facebook-token').Strategy;
 var TokenAuth             = require('./TokenAuth');
 var User                  = require('../models/User');
+var appkeys 		  = require('./appkeys');
+
 
 /*
+old
 var FACEBOOK_CLIENT_ID     = "1522281331351038";
 var FACEBOOK_CLIENT_SECRET = "5290021aaaf15d0f770b3b6541519a6b";
 */
 
+/*
+old
 var FACEBOOK_CLIENT_ID     = "1494519767479619";
 var FACEBOOK_CLIENT_SECRET = "56b4a4400047a4d4d3d6fe8b6045f733";
+*/
+
+var FACEBOOK_CLIENT_ID = appkeys.FACEBOOK_CLIENT_ID;
+var FACEBOOK_CLIENT_SECRET = appkeys.FACEBOOK_CLIENT_SECRET;
 
 var FacebookAuthConfig = {
 

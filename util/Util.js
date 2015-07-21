@@ -3,7 +3,8 @@ var Util = {
 	convertAccentedCharacters : function (str) {
 	    var conversions = new Object();
 	    conversions['ae'] = 'ä|æ|ǽ';
-	   // conversions['oe'] = 'ö|œ';
+	    //i left the comment outed conversions here initially in case we might need them later. - bora
+	    //conversions['oe'] = 'ö|œ';
 	    //conversions['ue'] = 'ü';
 	    conversions['Ae'] = 'Ä';
 	    //conversions['Ue'] = 'Ü';
