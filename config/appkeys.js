@@ -1,3 +1,6 @@
+//we have one more token in services/VenueService.js, but it's embedded to a json object.
+//since i can't try to compile this code at the moment, i won't take risk and I will leave it there for now.
+
 var FACEBOOK_CLIENT_ID     = "1494519767479619";
 var FACEBOOK_CLIENT_SECRET = "56b4a4400047a4d4d3d6fe8b6045f733";
 
