@@ -3,6 +3,7 @@ var Product  = require('../models/Product');
 var VenueProduct = require('../models/VenueProduct');
 var Category = require('../models/Category');
 var Util     = require('../util/Util');
+var appkeys 		  = require('../config/appkeys');//getting keys
 
 var async   = require('async');
 var request = require('request');
@@ -15,8 +16,8 @@ var FILTER_TYPE_CLOSED   = 2;
 var FILTER_TYPE_RATING   = 3;
 var FILTER_TYPE_DISTANCE = 4;
 
-var FOURSQUARE_CLIENT_ID     = 'SSKIRMC24PBSSQ25VMSD30OSHLMLUNPJ2W0EMQJE1N2EHU5A';
-var FOURSQUARE_CLIENT_SECRET = 'RSZO23NOHYMHZXGA5QYW22EBFIDCCS04WCMYVAOEMI3N5VWR';
+var FOURSQUARE_CLIENT_ID = appkeys.FOURSQUARE_CLIENT_ID;
+var FOURSQUARE_CLIENT_SECRET = appkeys.FOURSQUARE_CLIENT_SECRET;
 
 function compareAutoCompleteResults(a,b) {
   if (a.name < b.name)
