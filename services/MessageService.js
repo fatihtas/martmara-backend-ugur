@@ -1,6 +1,8 @@
-var accountSID  = 'ACa049468c4507ced1d2aea094773710d6';
-var authToken   = '6d68e56aa57aafec4cbd87bac348cf46';
-var twilioPhone = "+12017318358";
+var appkeys 		  = require('../config/appkeys');
+
+var accountSID = appkeys.accountSID;
+var authToken = appkeys.authToken;
+var twilioPhone = appkeys.twilioPhone;
 
 var twilio = require('twilio')(accountSID, authToken);
 
