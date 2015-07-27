@@ -1,6 +1,8 @@
 var mongoose = require ("mongoose");
+var appkeys  = require('./appkeys');
 
 var uristring = process.env.MONGOLAB_URI;
+var MONGO_CONNECTION_STRING = appkeys.MONGO_CONNECTION_STRING;
 //var uristring = 'mongodb://127.0.0.1:27017/martmara';
 
 // Production
@@ -10,9 +12,10 @@ var uristring = process.env.MONGOLAB_URI;
 // Development
 //var uristring = 'mongodb://admin:martmara8790@ds043190.mongolab.com:43190/heroku_app28700353';
 
+
 if (uristring == undefined) {
   // Defaults to development
-  uristring = 'mongodb://admin:martmara8790@ds043190.mongolab.com:43190/heroku_app28700353';
+  uristring = MONGO_CONNECTION_STRING;
 }
 
 var theport = process.env.PORT || 5000;
