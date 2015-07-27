@@ -1,6 +1,5 @@
 var Venue       	 = require('../models/Venue');
 var Product     	 = require('../models/Product');
-var Analytics    	 = require('../models/Analytics');
 var User     	 	 = require('../models/User');
 var VenueProductUser = require('../models/VenueProductUser');
 var VenueProduct     = require('../models/VenueProduct');
@@ -960,14 +959,6 @@ var VenueService = {
 
 		Venue
 		.remove({_id : venueId})
-		.exec(function(err) {
-			if (err) {
-				console.log(err);
-			}
-		});
-
-		Analytics
-		.remove({venue : venueId})
 		.exec(function(err) {
 			if (err) {
 				console.log(err);

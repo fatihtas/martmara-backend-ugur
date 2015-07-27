@@ -33,7 +33,7 @@ else {
 	var VenueController     = require('./controllers/VenueController');
 	var UserController      = require('./controllers/UserController');
 	var SearchController    = require('./controllers/SearchController');
-	var AnalyticsController = require('./controllers/AnalyticsController');
+	//var AnalyticsController = require('./controllers/AnalyticsController');//removed
 
 	// Auth Config Imports
 	var FacebookAuthConfig = require('./config/FacebookAuthConfig');
@@ -135,14 +135,6 @@ else {
 	app.post('/user/getUserPageCount'				, TokenAuth.authenticate , UserController.getUserPageCount);
 	app.post('/user/editUserStatus'				    , TokenAuth.authenticate , UserController.editUserStatus);
 
-	app.post('/analytics/createAnalyticsEntry'      	   , TokenAuth.authenticate , AnalyticsController.createAnalyticsEntry);
-	app.post('/analytics/getAnalytics'      			   , TokenAuth.authenticate , AnalyticsController.getAnalytics);
-	app.post('/analytics/getTopAnalytics'      			   , TokenAuth.authenticate , AnalyticsController.getTopAnalytics);
-	app.post('/analytics/getSearchAnalyticsPageCount'      , TokenAuth.authenticate , AnalyticsController.getSearchAnalyticsPageCount);
-	app.post('/analytics/getSearchAnalytics'               , TokenAuth.authenticate , AnalyticsController.getSearchAnalytics);
-	app.post('/analytics/getAllAnalytics'                  , TokenAuth.authenticate , AnalyticsController.getAllAnalytics);
-
-
 	var httpServer = http.createServer(app).listen(app.get('port'), function(){
 	  console.log('Express server listening on port ' + app.get('port'));
 	});
@@ -154,6 +146,5 @@ else {
 	var MessageService = require('./services/MessageService');
 	app.post('/messages/sendVerificationCode' , TokenAuth.authenticate , MessageService.sendVerificationCode);
 	app.post('/messages/verifyCode'           , TokenAuth.authenticate , MessageService.verifyCode);
-
 	
 }
