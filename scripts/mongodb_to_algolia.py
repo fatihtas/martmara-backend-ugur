@@ -26,7 +26,7 @@ class JSONEncoder(json.JSONEncoder):
 
 client = pymongo.MongoClient('ds051770-a0.mongolab.com',51770)
 db = client.heroku_app31071968
-db.authenticate('bora', 'QWEasd123')
+db.authenticate('bora', 'QWEasd123')#readonly user
 db_venues = db.venues
 db_venueproducts = db.venueproducts
 db_products = db.products
