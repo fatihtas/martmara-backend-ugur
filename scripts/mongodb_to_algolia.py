@@ -51,8 +51,8 @@ for venue in db_venues.find({},{'creator':0,'operatingHours':0,'keywords':0,'sta
 	
 	#location
 	venue['geoloc']={}
-	venue['geoloc']['lat'] = venue['location'][0]
-	venue['geoloc']['lng'] = venue['location'][1]
+	venue['geoloc']['lat'] = venue['location'][1]
+	venue['geoloc']['lng'] = venue['location'][0]
 	venue.pop("location", None)
 	
 	#category
