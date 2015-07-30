@@ -11,9 +11,9 @@ from bson import json_util
 #ornek: _skip=100 _limit=200 olursa [100,300] venue'larinda islem yapilir.
 
 
-_skip = int(input())#start index
-_limit = int(input())#number of venues to write to file
-filename = input()#output file name
+_skip = int(input("start:"))#start index
+_limit = int(input("limit:"))#number of venues to write to file
+filename = input("outputfilename:")#output file name
 
 class JSONEncoder(json.JSONEncoder):
 	def default(self, o):
@@ -42,12 +42,22 @@ start = time.time()
 
 f = open(filename, 'wb')
 
-f.write(bytes(str('['),'utf-8'))
+f.write(bytes(str(''),'utf-8'))
 
 total_n_of_venue = db_venues.count()
-for venue in db_venues.find({},{'creator':0,'operatingHours':0,'keywords':0,'status':0,'ownerStatus':0,'__v':0}).skip(_skip).limit(_limit):
+for venue in db_venues.find({},{'creator':0,'keywords':0,'status':0,'ownerStatus':0,'__v':0}).skip(_skip).limit(_limit):
 
 	venue_id = venue['_id']
+	
+	venue['op_hours']={}
+	if 'operatingHours' in venue:
+		#print(venue['operatingHours'])
+		for day in venue['operatingHours']:
+			venue['op_hours'][str(day['dayOfTheWeek'])] = []
+			venue['op_hours'][str(day['dayOfTheWeek'])].append(day['openingHourString']+':00')
+			venue['op_hours'][str(day['dayOfTheWeek'])].append(day['closingHourString']+':00')
+	venue.pop("operatingHours",None)
+		
 	
 	#location
 	venue['geoloc']={}
@@ -67,25 +77,36 @@ for venue in db_venues.find({},{'creator':0,'operatingHours':0,'keywords':0,'sta
 	venue.pop("categorydetails", None)
 	
 	#below finds the products of this venue
-	product_ids = []
-	for productofvenue in db_venueproducts.find({'venue':venue_id},{'product':1}):
-		product_id = productofvenue['product']
-		product_ids.append(product_id)
-	productlist = list(db_products.find({'_id':{'$in' : product_ids}},{'nameEn':1,'nameTr':1,'_id':0}))
-	venue['products'] = productlist
+	products_of_this_venue = []
+	product_id_array = []
+	for productofvenue in db_venueproducts.find({'venue':venue_id},{'product':1,'rating':1,'price':1,'currency':1}):
+		products_of_this_venue.append(productofvenue)#(productofvenue['product'],productofvenue['rating'],productofvenue['price'],productofvenue['currency']))
+		product_id_array.append(productofvenue['product'])#for teh products query.
+	products = list(db_products.find({'_id':{'$in' : product_id_array}},{'nameEn':1,'nameTr':1,'_id':1}))
+	#burada nested loop yapmak zorundayim, python'da dictionary'leri join edince de ayni seyi yapiyomus. n=number_of_total_venues ise bizim kod n^3'te calisiyor.
+	for product in products_of_this_venue:
+		for productofvenue in products:
+			if product['product']==productofvenue['_id']:
+				if 'nameEn' in productofvenue:
+					product['nameEn']=productofvenue['nameEn']
+				if 'nameTr' in productofvenue:
+					product['nameTr']=productofvenue['nameTr']
+		product.pop('_id',None)
+		product.pop('product',None)
+		
+	print (products_of_this_venue)
+	
+	venue['products'] = products_of_this_venue
 	myc+=1
-	
-	thinvenue={}
-	
 	
 	if (commatag==0):
 		f.write(bytes(str(JSONEncoder().encode(venue)),'utf-8'))
 		commatag=1
 	else:
 		f.write(bytes(',\n'+str(JSONEncoder().encode(venue)),'utf-8'))
-	print ("venue:",myc,"\ttotalvenue:", total_n_of_venue,"\tproductintisvenue:",len(product_ids))
+	print ("venue:",myc,"\ttotalvenue:", total_n_of_venue,"\tproductintisvenue:",len(product_id_array))
 	
-f.write(bytes(str('\n]'),'utf-8'))
+f.write(bytes(str('\n'),'utf-8'))
 
 end = time.time()
 
