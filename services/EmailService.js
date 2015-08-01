@@ -9,7 +9,7 @@ var transporter = nodemailer.createTransport({
     service: 'yandex',
     auth: {
         user: FROM_ADDRESS,
-        pass: '123QWEasd'
+        pass: 'ALPEN7369lighty'
     }
 });
 
@@ -20,9 +20,17 @@ function sendEmail (toAddress, subject, content){
     	subject : subject,
     	html    : content
   	};
+	transporter.sendMail(mailOptions, function(error, info){
+		if(error){
+			return console.log(error);
+		}
+		console.log('Message sent: ' + info.response);
+	});//send email with error check -yigityol
 
-  	transporter.sendMail(mailOptions);
-}
+
+
+};
+
 
 function parseTemplate (templateName , context , callback) {
 	var template =  process.cwd() + '/email-templates/' + templateName;

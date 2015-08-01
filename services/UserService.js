@@ -25,7 +25,7 @@ var UserService = {
 
 		var newUser = new User({
 			name 	    : name,
-			email 	    : email,
+			email		: email,
 			password    : password,
 			dateOfBirth : dateOfBirth,
 			gender 	    : gender
