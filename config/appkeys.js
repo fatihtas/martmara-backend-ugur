@@ -1,11 +1,11 @@
 //we have one more token in services/VenueService.js, but it's embedded to a json object.
 //since i can't try to compile this code at the moment, i won't take risk and I will leave it there for now.
 
-var FACEBOOK_CLIENT_ID     = "1494519767479619";
-var FACEBOOK_CLIENT_SECRET = "56b4a4400047a4d4d3d6fe8b6045f733";
+var FACEBOOK_CLIENT_ID     = "877089325699506";
+var FACEBOOK_CLIENT_SECRET = "0c99d09c126e4b09a98c58707fbab64a";
 
-var GOOGLE_CLIENT_ID     = "952167144833-9vf9gvuo7j9v69bonosmd9lo9i034p22.apps.googleusercontent.com";
-var GOOGLE_CLIENT_SECRET = "N255okeT04i-_4p4ivoI8RmL";
+var GOOGLE_CLIENT_ID     = "252567430754-pac1btdevfvlpnvn8tnt1ooogm772uce.apps.googleusercontent.com";
+var GOOGLE_CLIENT_SECRET = "Wtoe414yv3TpdzxM__mts1Al";
 
 var JWT_SECRET_TOKEN = '4353453?)ASDASD35JDJDJ111'
 
